@@ -6,7 +6,7 @@
   const hist = []; let hi = -1;
 
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const fmt = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+  const fmt = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/https:\/\/(pump\.fun|x\.com)\/[\w\/.-]*[\w\/]/g, u => `<a href="${u}" target="_blank" rel="noopener" style="text-decoration:underline">${u}</a>`);
   const scoreColor = s => s >= 80 ? '#ff4d6d' : s >= 60 ? '#ff7a45' : s >= 40 ? '#ff9f1c' : s >= 20 ? '#ffd166' : '#4ade80';
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const scroll = () => { out.scrollTop = out.scrollHeight; };
@@ -101,6 +101,11 @@
     if (lines.length) lines[0] = lines[0];
     line('<span class="b">segfault&gt;</span>', '');
     await typeLines(lines, cls);
+    if (res.actions && res.actions.length) {
+      const a = document.createElement('div'); a.className = 'actions';
+      a.innerHTML = res.actions.map(x => x.copy ? `<button data-copy="${esc(x.copy)}">${esc(x.label)}</button>` : `<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join('');
+      out.appendChild(a); scroll();
+    }
     if (res.source && res.source.startsWith('llm')) line('<span class="m">(free-form answer via LLM)</span>');
   }
 
@@ -137,7 +142,7 @@
     const c = e.target.closest('[data-cmd]');
     if (c) { e.preventDefault(); const cmd = c.dataset.cmd === '__debug_sample' ? '/debug ' + SAMPLE_TRACE : c.dataset.cmd; document.getElementById('terminal').scrollIntoView({ block: 'nearest' }); send(cmd); return; }
     const cp = e.target.closest('[data-copy]');
-    if (cp) { try { await navigator.clipboard.writeText(cp.dataset.copy); cp.textContent = 'Copied ✓'; } catch { prompt('Copy link:', cp.dataset.copy); } return; }
+    if (cp) { const old = cp.textContent; try { await navigator.clipboard.writeText(cp.dataset.copy); cp.textContent = 'Copied ✓'; setTimeout(() => { cp.textContent = old; }, 1800); } catch { prompt('Copy:', cp.dataset.copy); } return; }
     const ld = e.target.closest('[data-load]');
     if (ld) { e.preventDefault(); loadRoast(ld.dataset.load); }
   });

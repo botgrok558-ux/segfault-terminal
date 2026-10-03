@@ -132,3 +132,16 @@ footer b{color:var(--text)}
   .chips{flex-wrap:nowrap;overflow-x:auto}.chips button{flex:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* launch: CA box */
+.ca-box{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:-6px 0 22px;font-family:var(--mono);font-size:13px;background:#0d0f15;border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:fit-content;max-width:100%}
+.ca-box .live{display:inline-flex;align-items:center;gap:7px;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.3);padding:3px 10px;border-radius:999px;font-weight:600}
+.ca-box .live .dot{background:#4ade80;box-shadow:0 0 12px #4ade80}
+.ca-label{color:var(--muted)}
+.ca-addr{color:var(--text);word-break:break-all;user-select:all}
+.ca-inline{word-break:break-all;user-select:all}
+.ca-copy,.ca-buy,.ca-chart{font-family:var(--mono);font-size:12.5px;padding:6px 11px;border-radius:9px;border:1px solid #2c3243;background:#151925;color:var(--text);cursor:pointer;text-decoration:none}
+.ca-copy:hover,.ca-chart:hover{border-color:var(--red)}
+.ca-buy{background:#4ade80;border-color:#4ade80;color:#0b0d12;font-weight:700}
+.ca-copy.sm{padding:2px 8px;font-size:11.5px}
+@media (max-width:760px){.ca-box{justify-content:center;margin-left:auto;margin-right:auto}.ca-addr{font-size:11px}}

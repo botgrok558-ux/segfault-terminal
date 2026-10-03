@@ -6,7 +6,7 @@
 |---|---|---|
 | **Repo roast** `/roast owner/repo` (or just paste a GitHub URL) | Deterministic **Crash Score 0–100**, a roast built from a template library keyed on real signals, and **one concrete fix** | Public GitHub REST API: repo metadata, languages, file tree (names + sizes only, file contents are never read) |
 | **Debug** `/debug <trace>` (or just paste a stack trace) | Detects 30+ classic errors (segfault, NPE, `undefined`, KeyError, IndexError, CORS, ECONNREFUSED, OOM, ImportError, Rust borrow errors, Go nil pointer, ...), shows the crash site, likely cause, fix and a roast line | Rule engine (`lib/debug.js`) |
-| **Q&A** about $SEGFAULT | Intent matching over a small knowledge base built from `../concept.md` (what, how, tokenomics, CA, roadmap, safety, how to buy, ...). Honest: not launched, no CA yet, no promises, not financial advice | `lib/kb.js` |
+| **Q&A** about $SEGFAULT | Intent matching over a small knowledge base built from `../concept.md` (what, how, tokenomics, CA, roadmap, safety, how to buy, ...). Honest: live on pump.fun, official CA only, no promises, not financial advice | `lib/kb.js` |
 | **Optional LLM** | If `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` is set, unmatched free-form questions go to the LLM (with the KB and honesty rules as system prompt). Without a key, everything stays rule-based | `lib/llm.js` |
 
 Extras: shareable **roast card PNG** (1200×630, rendered server-side), live **Hall of Shame** leaderboard (`data/roasts.json`), **Share on X** button (prefilled, < 250 chars, tags @SegfaultDevBot), `/r/<id>` share links with OG/Twitter-card meta, command history (↑/↓), easter eggs (`sudo`, `rm -rf /`, `:wq`, `exit vim`, `git push --force`, `npm install`, `hello world`, `ping`, `coffee`, ...).
@@ -92,4 +92,4 @@ app/
 
 - Only public data; file **contents are never fetched**, so secrets in a committed `.env` are never read (only the file name is flagged).
 - Roasts target code, never people. Repo text is never executed or used as instructions.
-- The coin is **not launched**; the bot never states a CA, never predicts prices, never asks for keys/seed phrases. Not financial advice.
+- The coin is **live on pump.fun** (Solana). The bot only ever states the official CA `CYEus7v4ygJAHjB3DVRNyxFXYBtMKeALD2nTf8wzpump` (https://pump.fun/coin/CYEus7v4ygJAHjB3DVRNyxFXYBtMKeALD2nTf8wzpump), never predicts prices, never asks for keys/seed phrases. Not financial advice.

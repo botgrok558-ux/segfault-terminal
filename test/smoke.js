@@ -8,6 +8,8 @@ const check = (ok, label) => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${label}`);
 (async () => {
   const qa = [['what is $SEGFAULT?', 'kb:what'], ["what's the CA?", 'kb:ca'], ['is it safe?', 'kb:safe'], ['how do I buy it?', 'kb:buy'], ['wen moon?', 'kb:price']];
   for (const [q, src] of qa) { const r = await chat(q); check(r.source === src, `Q&A "${q}" -> ${r.source}`); console.log('      ' + r.lines.join('\n      ')); }
+  const CA = 'CYEus7v4ygJAHjB3DVRNyxFXYBtMKeALD2nTf8wzpump';
+  for (const q of ['what is the CA', 'where to buy']) { const r = await chat(q); const t = r.lines.join(' '); check(t.includes(CA) && t.includes('https://pump.fun/coin/' + CA), `"${q}" answers with the CA + pump.fun link`); }
   const traces = {
     segfault: 'Program received signal SIGSEGV, Segmentation fault.\n0x0000555555555149 in main () at main.c:6',
     'js-undefined': "TypeError: Cannot read properties of undefined (reading 'map')\n    at TodoList (/app/src/TodoList.jsx:14:23)",
