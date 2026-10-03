@@ -1,0 +1,20 @@
+{
+  "name": "segfault-terminal",
+  "version": "1.0.0",
+  "description": "$SEGFAULT terminal: the AI that roasts your code until it crashes. Repo roasts from real GitHub data, stack-trace debugging, honest Q&A.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test/smoke.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "express": "^5.2.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=18.17"
+  }
+}

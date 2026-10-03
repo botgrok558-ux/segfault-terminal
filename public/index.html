@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$SEGFAULT terminal · the AI that roasts your code until it crashes</title>
+<meta name="description" content="Paste a GitHub repo, get roasted. Real GitHub data, a Crash Score from 0 to 100 and one real fix. Paste a stack trace, get it debugged. $SEGFAULT is a meme coin with a bot that works.">
+<meta property="og:site_name" content="$SEGFAULT terminal">
+<meta name="theme-color" content="#08090d">
+<!--OG-->
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="/mark.svg" alt="" class="nav-logo"> $SEGFAULT</a>
+    <div class="nav-links">
+      <a href="#terminal">Terminal</a><a href="#shame">Hall of Shame</a><a href="#how">How it works</a><a href="#faq">FAQ</a>
+    </div>
+    <a class="nav-x" href="https://x.com/SegfaultDevBot" target="_blank" rel="noopener">@SegfaultDevBot</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-head">
+      <img src="/logo.svg" alt="$SEGFAULT logo: a crashed robot with X eyes" class="hero-logo">
+      <div>
+        <span class="tag"><span class="dot"></span>Segmentation fault (core dumped)</span>
+        <h1>The AI that <span>roasts your code</span> until it crashes.</h1>
+        <p class="lead">Paste a GitHub repo. The bot pulls <b>real data</b> from the GitHub API, gives it a <b>Crash Score</b> from 0 to 100, roasts it and hands you <b>one real fix</b>. Paste a stack trace, and it debugs it for you.</p>
+      </div>
+    </div>
+
+    <div class="term" id="terminal" aria-label="$SEGFAULT terminal">
+      <div class="term-bar">
+        <i></i><i></i><i></i>
+        <span class="term-title">segfault@terminal: ~</span>
+        <span class="term-status" id="status">● online</span>
+      </div>
+      <div class="term-out" id="out" role="log" aria-live="polite"></div>
+      <div class="chips" id="chips">
+        <button data-cmd="/roast torvalds/linux">/roast torvalds/linux</button>
+        <button data-cmd="/roast expressjs/express">/roast expressjs/express</button>
+        <button data-cmd="__debug_sample">/debug sample trace</button>
+        <button data-cmd="what is $SEGFAULT?">what is $SEGFAULT?</button>
+        <button data-cmd="what's the CA?">what's the CA?</button>
+        <button data-cmd="/shame">/shame</button>
+        <button data-cmd="/help">/help</button>
+      </div>
+      <form class="term-in" id="form" autocomplete="off">
+        <label for="input" class="prompt">you@segfault:~$</label>
+        <textarea id="input" rows="1" spellcheck="false" placeholder="paste a repo URL, a stack trace, or ask anything... (try: sudo)"></textarea>
+        <button type="submit" class="send" aria-label="Send">⏎</button>
+      </form>
+    </div>
+    <p class="fine">Uses only public GitHub data (metadata, languages, file tree). File contents are never read. Roasts target code, never people.</p>
+  </div>
+</header>
+
+<section id="shame">
+  <div class="wrap">
+    <div class="kicker">// hall of shame</div>
+    <div class="shame-head">
+      <h2>Highest Crash Scores so far.</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <p class="sub">Live leaderboard of every repo roasted in this terminal. Lower is better. Nobody wants to be #1 here.</p>
+    <div class="board" id="board"><div class="empty">No victims yet. Be the first: roast a repo above.</div></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">// how it works</div>
+    <h2>No API key. No magic. Just real data and a mean streak.</h2>
+    <div class="grid3">
+      <div class="card"><div class="icon">&gt;_</div><h3>/roast &lt;repo&gt;</h3><p>3 calls to the public GitHub REST API: repo metadata, languages and the file tree. Signals like missing tests, no CI, no license, committed <code>node_modules</code> or <code>.env</code>, huge files and the last push date feed a deterministic Crash Score.</p></div>
+      <div class="card"><div class="icon">!!</div><h3>/debug</h3><p>Paste a stack trace. A rule engine recognises 30+ classic failures (segfault, NullPointerException, <code>undefined</code>, KeyError, CORS, ECONNREFUSED, OOM, Rust borrow errors...), finds the crash site and suggests a fix.</p></div>
+      <div class="card"><div class="icon">?</div><h3>Ask anything</h3><p>Questions about $SEGFAULT are answered from a small, honest knowledge base. No price talk, no promises. Free-form LLM answers switch on only if the host sets an API key.</p></div>
+    </div>
+    <div class="score-explain">
+      <div><b>Crash Score</b> = 30 base + penalties for real problems − bonuses for real strengths, clamped to 0–100. Same repo, same data, same score.</div>
+      <div class="bands">
+        <span style="--c:#4ade80">0–19 runs clean</span><span style="--c:#ffd166">20–39 warnings</span><span style="--c:#ff9f1c">40–59 undefined behavior</span><span style="--c:#ff7a45">60–79 memory leak</span><span style="--c:#ff4d6d">80–100 core dumped</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker">// faq</div>
+    <h2>The honest version.</h2>
+    <div class="faq">
+      <details open><summary>What is $SEGFAULT?</summary><p>A Solana meme coin with a bot that actually works: it roasts GitHub repos and debugs stack traces. Creator fees are meant to pay the bot's API bill. That's it.</p></details>
+      <details><summary>What's the contract address (CA)?</summary><p><b>Not launched yet, so there is no CA.</b> The only valid CA will be posted by <a href="https://x.com/SegfaultDevBot" target="_blank" rel="noopener">@SegfaultDevBot</a>. Anything else is a fake.</p></details>
+      <details><summary>Do holders get anything?</summary><p>No. No staking, no rewards, no buybacks, no revenue share, no token-gating. The bot is free for everyone.</p></details>
+      <details><summary>Is it safe? Will it go up?</summary><p>It's a meme coin: no intrinsic value, high risk, you can lose everything. No predictions, no promises. Not financial advice.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="disc"><b>Disclaimer.</b> $SEGFAULT is a meme coin with no intrinsic value, no expectation of financial return and no rights to revenue, profits, governance or anything else. It has <b>not launched</b>; there is no contract address yet. The bot is free for everyone and does not require holding the token. Nothing on this site is financial, investment, legal or tax advice. Roasts are generated automatically from public GitHub data, target code (never people) and can be wrong.</div>
+    <div class="foot"><span>&copy; 2026 $SEGFAULT &middot; core dumped with love</span><span>not affiliated with GitHub, X, Telegram or pump.fun</span></div>
+  </div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>
